@@ -1,0 +1,23 @@
+// Define the analog pin connected to the water level sensor
+#define waterSensorPin A3  // Use A3 for water level sensor
+
+void setup() {
+  // Start serial communication at 9600 baud rate
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the analog value from the water level sensor
+  int sensorValue = analogRead(waterSensorPin);
+
+  // Convert the analog reading (0-1023) to a percentage (0-100%)
+  float waterLevelPercentage = map(sensorValue, 0, 1023, 0, 100);
+
+  // Print the water level value to the serial monitor
+  Serial.print("Water Level: ");
+  Serial.print(waterLevelPercentage);
+  Serial.println(" %");
+
+  // Delay for a second before reading again
+  delay(1000);
+}
